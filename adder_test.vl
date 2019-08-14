@@ -1,0 +1,17 @@
+module addtest;
+reg[15:0] X,Y;
+wire[15:0] Z;
+wire CY;
+adder ADDER(X,Y,Z,CY);
+initial
+	begin
+		$dumpfile("adder.vcd");
+		$dumpvars(0,addtest);
+	$monitor($time,"X=%h,Y=%h,Z=%h,CY=%b",X,Y,Z,CY);
+	#5 X=16'h8fff; Y=16'h8000;
+	#5 X=16'hfffe; Y=16'h0000;
+	#5 X=16'hAAAA; Y=16'h5555;
+	#5 $finish;
+	end
+endmodule
+	
